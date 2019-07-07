@@ -3,7 +3,6 @@ from Crypto import Random
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_PKCS1_v1_5
-from Crypto.Util import Counter
 from base64 import b64decode,b64encode
 
 import os
