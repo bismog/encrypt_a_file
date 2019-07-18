@@ -1,0 +1,568 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AES_128	aes.h	53;"	d
+AES_192	aes.h	54;"	d
+AES_256	aes.h	55;"	d
+AES_BLOCK_SIZE	aes.h	64;"	d
+AES_DECRYPT	aes.h	62;"	d
+AES_ENCRYPT	aes.h	61;"	d
+AES_MODES	aes.h	57;"	d
+AES_RETURN	aes.h	79;"	d
+AES_REV_DKS	aesopt.h	455;"	d
+AES_REV_DKS	aesopt.h	460;"	d
+AES_VAR	aes.h	56;"	d
+AES_VIA_ACE_H	aes_via_ace.h	21;"	d
+AESdecrypt	aescpp.h	/^    AESdecrypt(const unsigned char key[])$/;"	f	class:AESdecrypt
+AESdecrypt	aescpp.h	/^    AESdecrypt(void) { aes_init(); };$/;"	f	class:AESdecrypt
+AESdecrypt	aescpp.h	/^class AESdecrypt$/;"	c
+AESencrypt	aescpp.h	/^    AESencrypt(const unsigned char key[])$/;"	f	class:AESencrypt
+AESencrypt	aescpp.h	/^    AESencrypt(void) { aes_init(); };$/;"	f	class:AESencrypt
+AESencrypt	aescpp.h	/^class AESencrypt$/;"	c
+ALGORITHM_BYTE_ORDER	aesopt.h	155;"	d
+ALGORITHM_BYTE_ORDER	aesopt.h	157;"	d
+ALGORITHM_BYTE_ORDER	aesopt.h	159;"	d
+ALGORITHM_BYTE_ORDER	aesopt.h	467;"	d
+ALGORITHM_BYTE_ORDER	aesopt.h	468;"	d
+ALIGN	aestab.h	107;"	d
+ALIGN	aestab.h	109;"	d
+ALIGN_CEIL	brg_types.h	172;"	d
+ALIGN_FLOOR	brg_types.h	171;"	d
+ALIGN_OFFSET	brg_types.h	170;"	d
+ARRAYS	aesopt.h	325;"	d
+ASM_AMD64_C	aesopt.h	245;"	d
+ASM_X86_V2	aesopt.h	241;"	d
+ASM_X86_V2C	aesopt.h	243;"	d
+ASSUME_VIA_ACE_PRESENT	aesopt.h	442;"	d
+BFR_BLOCKS	aes_modes.c	57;"	d	file:
+BFR_LENGTH	aes_modes.c	861;"	d	file:
+BPOLY	aesopt.h	602;"	d
+BRG_UI32	brg_types.h	66;"	d
+BRG_UI64	brg_types.h	103;"	d
+BRG_UI64	brg_types.h	108;"	d
+BRG_UI64	brg_types.h	80;"	d
+BRG_UI64	brg_types.h	83;"	d
+BRG_UI64	brg_types.h	86;"	d
+BRG_UI64	brg_types.h	89;"	d
+BRG_UI64	brg_types.h	93;"	d
+BRG_UI64	brg_types.h	98;"	d
+BUFR_TYPEDEF	brg_types.h	196;"	d
+CONST	aestab.h	92;"	d
+CONST	aestab.h	94;"	d
+CONST	aestab.h	97;"	d
+DECRYPTION_IN_C	aesopt.h	110;"	d
+DEC_KEYING_IN_C	aesopt.h	112;"	d
+DEC_KS_UNROLL	aeskey.c	67;"	d	file:
+DEC_KS_UNROLL	aesopt.h	305;"	d
+DEC_ROUND	aesopt.h	409;"	d
+DEC_ROUND	aesopt.h	411;"	d
+DEC_ROUND	aesopt.h	413;"	d
+DEC_ROUND	aesopt.h	631;"	d
+DEC_ROUND	aesopt.h	633;"	d
+DEC_UNROLL	aesopt.h	293;"	d
+DEC_UNROLL	aesopt.h	295;"	d
+DEC_UNROLL	aesopt.h	297;"	d
+DEC_UNROLL	aesopt.h	546;"	d
+DEC_UNROLL	aesopt.h	547;"	d
+DFUNCS_IN_C	aesopt.h	506;"	d
+DFUNCS_IN_C	aesopt.h	509;"	d
+DFUNCS_IN_C	aesopt.h	511;"	d
+DFUNCS_IN_C	aesopt.h	513;"	d
+DO_TABLES	aestab.c	21;"	d	file:
+EFUNCS_IN_C	aesopt.h	495;"	d
+EFUNCS_IN_C	aesopt.h	498;"	d
+EFUNCS_IN_C	aesopt.h	500;"	d
+EFUNCS_IN_C	aesopt.h	502;"	d
+ENCRYPTION_IN_C	aesopt.h	109;"	d
+ENC_FILE	encrypt.h	/^}ENC_FILE;$/;"	t	typeref:struct:_ENC_FILE
+ENC_KEYING_IN_C	aesopt.h	111;"	d
+ENC_KS_UNROLL	aeskey.c	64;"	d	file:
+ENC_KS_UNROLL	aesopt.h	301;"	d
+ENC_ROUND	aesopt.h	393;"	d
+ENC_ROUND	aesopt.h	395;"	d
+ENC_ROUND	aesopt.h	397;"	d
+ENC_ROUND	aesopt.h	623;"	d
+ENC_ROUND	aesopt.h	625;"	d
+ENC_UNROLL	aesopt.h	285;"	d
+ENC_UNROLL	aesopt.h	287;"	d
+ENC_UNROLL	aesopt.h	289;"	d
+ENC_UNROLL	aesopt.h	533;"	d
+ENC_UNROLL	aesopt.h	534;"	d
+EXTERN	aestab.h	101;"	d
+EXTERN	aestab.h	103;"	d
+FAST_BUFFER_OPERATIONS	aes_modes.c	63;"	d	file:
+FF_TABLES	aesopt.h	314;"	d
+FIXED_TABLES	aesopt.h	335;"	d
+FL1_SET	aesopt.h	653;"	d
+FL4_SET	aesopt.h	655;"	d
+FOUR_TABLES	aesopt.h	116;"	d
+FT1_SET	aesopt.h	646;"	d
+FT4_SET	aesopt.h	648;"	d
+FULL	aesopt.h	119;"	d
+FUNCS_IN_C	aesopt.h	516;"	d
+IL1_SET	aesopt.h	670;"	d
+IL4_SET	aesopt.h	672;"	d
+IM1_SET	aesopt.h	694;"	d
+IM4_SET	aesopt.h	696;"	d
+INLINE	aes_via_ace.h	24;"	d
+INLINE	aes_via_ace.h	26;"	d
+INTEL_AES_POSSIBLE	aesopt.h	187;"	d
+INT_RETURN	brg_types.h	125;"	d
+INT_RETURN	brg_types.h	128;"	d
+INT_RETURN	brg_types.h	135;"	d
+INT_RETURN	brg_types.h	138;"	d
+INT_RETURN	brg_types.h	144;"	d
+INT_RETURN	brg_types.h	147;"	d
+ISB_SET	aesopt.h	667;"	d
+ISB_SET	aesopt.h	674;"	d
+ISB_SET	aesopt.h	766;"	d
+IS_BIG_ENDIAN	brg_endian.h	24;"	d
+IS_LITTLE_ENDIAN	brg_endian.h	25;"	d
+IT1_SET	aesopt.h	663;"	d
+IT4_SET	aesopt.h	665;"	d
+KEY_SCHED	aesopt.h	429;"	d
+KEY_SCHED	aesopt.h	431;"	d
+KEY_SCHED	aesopt.h	433;"	d
+KEY_SCHED	aesopt.h	639;"	d
+KEY_SCHED	aesopt.h	640;"	d
+KS_LENGTH	aes.h	72;"	d
+KS_LENGTH	aes.h	74;"	d
+KS_LENGTH	aes.h	76;"	d
+LAST_DEC_ROUND	aesopt.h	417;"	d
+LAST_DEC_ROUND	aesopt.h	419;"	d
+LAST_DEC_ROUND	aesopt.h	421;"	d
+LAST_DEC_ROUND	aesopt.h	538;"	d
+LAST_DEC_ROUND	aesopt.h	539;"	d
+LAST_DEC_ROUND	aesopt.h	541;"	d
+LAST_DEC_ROUND	aesopt.h	542;"	d
+LAST_DEC_ROUND	aesopt.h	635;"	d
+LAST_DEC_ROUND	aesopt.h	637;"	d
+LAST_ENC_ROUND	aesopt.h	401;"	d
+LAST_ENC_ROUND	aesopt.h	403;"	d
+LAST_ENC_ROUND	aesopt.h	405;"	d
+LAST_ENC_ROUND	aesopt.h	525;"	d
+LAST_ENC_ROUND	aesopt.h	526;"	d
+LAST_ENC_ROUND	aesopt.h	528;"	d
+LAST_ENC_ROUND	aesopt.h	529;"	d
+LAST_ENC_ROUND	aesopt.h	627;"	d
+LAST_ENC_ROUND	aesopt.h	629;"	d
+LS1_SET	aesopt.h	682;"	d
+LS1_SET	aestab.h	165;"	d
+LS4_SET	aesopt.h	686;"	d
+LS4_SET	aestab.h	173;"	d
+MAX_READ_ATTEMPTS	aes_via_ace.h	35;"	d
+NEH_ACE_ENABLED	aes_via_ace.h	46;"	d
+NEH_ACE_FLAGS	aes_via_ace.h	48;"	d
+NEH_ACE_PRESENT	aes_via_ace.h	45;"	d
+NEH_AES	aes_via_ace.h	137;"	d
+NEH_CBC	aes_via_ace.h	139;"	d
+NEH_CBC	aes_via_ace.h	330;"	d
+NEH_CFB	aes_via_ace.h	140;"	d
+NEH_CFB	aes_via_ace.h	331;"	d
+NEH_CPU_IS_VIA	aes_via_ace.h	39;"	d
+NEH_CPU_MASK	aes_via_ace.h	41;"	d
+NEH_CPU_READ	aes_via_ace.h	40;"	d
+NEH_DECRYPT	aes_via_ace.h	56;"	d
+NEH_DEC_GEN	aes_via_ace.h	62;"	d
+NEH_DEC_GEN_DATA	aes_via_ace.h	81;"	d
+NEH_DEC_HYBRID_DATA	aes_via_ace.h	91;"	d
+NEH_DEC_LOAD	aes_via_ace.h	64;"	d
+NEH_DEC_LOAD_DATA	aes_via_ace.h	86;"	d
+NEH_ECB	aes_via_ace.h	138;"	d
+NEH_ECB	aes_via_ace.h	329;"	d
+NEH_ENCRYPT	aes_via_ace.h	55;"	d
+NEH_ENC_GEN	aes_via_ace.h	61;"	d
+NEH_ENC_GEN_DATA	aes_via_ace.h	66;"	d
+NEH_ENC_HYBRID_DATA	aes_via_ace.h	76;"	d
+NEH_ENC_LOAD	aes_via_ace.h	63;"	d
+NEH_ENC_LOAD_DATA	aes_via_ace.h	71;"	d
+NEH_FLAGS_MASK	aes_via_ace.h	49;"	d
+NEH_GENERATE	aes_via_ace.h	31;"	d
+NEH_GEN_KEY	aes_via_ace.h	53;"	d
+NEH_HYBRID	aes_via_ace.h	33;"	d
+NEH_KEY128	aes_via_ace.h	57;"	d
+NEH_KEY192	aes_via_ace.h	58;"	d
+NEH_KEY256	aes_via_ace.h	59;"	d
+NEH_KEY_TYPE	aes_modes.c	86;"	d	file:
+NEH_LOAD	aes_via_ace.h	32;"	d
+NEH_LOAD_KEY	aes_via_ace.h	54;"	d
+NEH_OFB	aes_via_ace.h	141;"	d
+NEH_OFB	aes_via_ace.h	332;"	d
+NEH_REKEY	aes_via_ace.h	136;"	d
+NEH_REKEY	aes_via_ace.h	328;"	d
+NEH_RNG	aes_via_ace.h	142;"	d
+NEH_RNG	aes_via_ace.h	333;"	d
+NEH_RNG_ENABLED	aes_via_ace.h	44;"	d
+NEH_RNG_FLAGS	aes_via_ace.h	47;"	d
+NEH_RNG_PRESENT	aes_via_ace.h	43;"	d
+NONE	aesopt.h	117;"	d
+NO_TABLES	aesopt.h	114;"	d
+N_COLS	aes.h	65;"	d
+ONE_TABLE	aesopt.h	115;"	d
+PARTIAL	aesopt.h	118;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	105;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	114;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	117;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	119;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	50;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	52;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	55;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	57;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	62;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	64;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	67;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	69;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	74;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	76;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	79;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	81;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	86;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	88;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	91;"	d
+PLATFORM_BYTE_ORDER	brg_endian.h	93;"	d
+RC_LENGTH	aesopt.h	520;"	d
+REDUCE_CODE_SIZE	aesopt.h	369;"	d
+RETURN_VALUES	brg_types.h	121;"	d
+SAFE_IO	aesopt.h	270;"	d
+SBX_SET	aesopt.h	650;"	d
+SBX_SET	aesopt.h	657;"	d
+SBX_SET	aesopt.h	689;"	d
+SBX_SET	aesopt.h	698;"	d
+TABLE_ALIGN	aesopt.h	359;"	d
+UI_TYPE	brg_types.h	194;"	d
+UNIT_CAST	brg_types.h	197;"	d
+UNIT_TYPEDEF	brg_types.h	195;"	d
+UPTR_CAST	brg_types.h	198;"	d
+USE_INTEL_AES_IF_PRESENT	aesopt.h	191;"	d
+USE_VIA_ACE_IF_PRESENT	aesopt.h	445;"	d
+USE_VIA_ACE_IF_PRESENT	aesopt.h	450;"	d
+VIA_ACE_AVAILABLE	aes_via_ace.h	503;"	d
+VIA_ACE_POSSIBLE	aesopt.h	169;"	d
+VIA_RNG_AVAILABLE	aes_via_ace.h	511;"	d
+VOID_RETURN	brg_types.h	124;"	d
+VOID_RETURN	brg_types.h	127;"	d
+VOID_RETURN	brg_types.h	134;"	d
+VOID_RETURN	brg_types.h	137;"	d
+VOID_RETURN	brg_types.h	143;"	d
+VOID_RETURN	brg_types.h	146;"	d
+WPOLY	aesopt.h	601;"	d
+XP_DIR	aestab.h	113;"	d
+XP_DIR	aestab.h	115;"	d
+_AESCPP_H	aescpp.h	24;"	d
+_AESOPT_H	aesopt.h	88;"	d
+_AESTAB_H	aestab.h	62;"	d
+_AES_H	aes.h	25;"	d
+_BRG_ENDIAN_H	brg_endian.h	22;"	d
+_BRG_TYPES_H	brg_types.h	31;"	d
+_ENCRYPT_H_	encrypt.h	13;"	d
+_ENC_FILE	encrypt.h	/^typedef struct _ENC_FILE {$/;"	s
+aes_cbc_decrypt	aes_modes.c	/^AES_RETURN aes_cbc_decrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_cbc_encrypt	aes_modes.c	/^AES_RETURN aes_cbc_encrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_cfb_decrypt	aes_modes.c	/^AES_RETURN aes_cfb_decrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_cfb_encrypt	aes_modes.c	/^AES_RETURN aes_cfb_encrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_ctr_crypt	aes_modes.c	/^AES_RETURN aes_ctr_crypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_ctr_decrypt	aes.h	208;"	d
+aes_ctr_encrypt	aes.h	207;"	d
+aes_decrypt_ctx	aes.h	/^} aes_decrypt_ctx;$/;"	t	typeref:struct:__anon3
+aes_decrypt_key	aeskey.c	/^AES_RETURN aes_decrypt_key(const unsigned char *key, int key_len, aes_decrypt_ctx cx[1])$/;"	f
+aes_ecb_decrypt	aes_modes.c	/^AES_RETURN aes_ecb_decrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_ecb_encrypt	aes_modes.c	/^AES_RETURN aes_ecb_encrypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_encrypt_ctx	aes.h	/^} aes_encrypt_ctx;$/;"	t	typeref:struct:__anon2
+aes_encrypt_key	aeskey.c	/^AES_RETURN aes_encrypt_key(const unsigned char *key, int key_len, aes_encrypt_ctx cx[1])$/;"	f
+aes_inf	aes.h	/^} aes_inf;$/;"	t	typeref:union:__anon1
+aes_init	aestab.c	/^AES_RETURN aes_init(void)$/;"	f
+aes_mode_reset	aes_modes.c	/^AES_RETURN aes_mode_reset(aes_encrypt_ctx ctx[1])$/;"	f
+aes_ofb_crypt	aes_modes.c	/^AES_RETURN aes_ofb_crypt(const unsigned char *ibuf, unsigned char *obuf,$/;"	f
+aes_ofb_decrypt	aes.h	200;"	d
+aes_ofb_encrypt	aes.h	199;"	d
+aes_sw32	aesopt.h	551;"	d
+aes_sw32	aesopt.h	553;"	d
+aes_sw32	aesopt.h	556;"	d
+aes_test_alignment_detection	aes_modes.c	/^AES_RETURN aes_test_alignment_detection(unsigned int n)	\/* 4 <= n <= 16 *\/$/;"	f
+aes_xi	aescrypt.c	28;"	d	file:
+aes_xi	aeskey.c	28;"	d	file:
+aligned_array	aes_modes.c	101;"	d	file:
+aligned_array	aes_via_ace.h	123;"	d
+aligned_array	aes_via_ace.h	125;"	d
+aligned_array	aes_via_ace.h	127;"	d
+aligned_auto	aes_modes.c	102;"	d	file:
+aligned_auto	aes_via_ace.h	115;"	d
+aligned_auto	aes_via_ace.h	117;"	d
+b	aes.h	/^    uint8_t b[4];$/;"	m	union:__anon1
+brot	aesopt.h	555;"	d
+bval	aesopt.h	573;"	d
+bval	aesopt.h	581;"	d
+bytes2word	aesopt.h	574;"	d
+bytes2word	aesopt.h	582;"	d
+cbc_decrypt	aescpp.h	/^    AES_RETURN cbc_decrypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESdecrypt
+cbc_encrypt	aescpp.h	/^    AES_RETURN cbc_encrypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESencrypt
+cbuf_inc	aes.h	/^typedef void cbuf_inc(unsigned char *cbuf);$/;"	t
+cfb_decrypt	aescpp.h	/^    AES_RETURN cfb_decrypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESencrypt
+cfb_encrypt	aescpp.h	/^    AES_RETURN cfb_encrypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESencrypt
+ctr_crypt	aescpp.h	/^    AES_RETURN ctr_crypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESencrypt
+ctr_fn	aescpp.h	/^    typedef void ctr_fn(unsigned char ctr[]);$/;"	t	class:AESencrypt
+cx	aescpp.h	/^    aes_decrypt_ctx cx[1];$/;"	m	class:AESdecrypt
+cx	aescpp.h	/^    aes_encrypt_ctx cx[1];$/;"	m	class:AESencrypt
+d_1	aestab.h	119;"	d
+d_1	aestab.h	123;"	d
+d_4	aestab.h	120;"	d
+d_4	aestab.h	124;"	d
+d_vars	aeskey.c	234;"	d	file:
+data	encrypt.h	/^	unsigned char *data;$/;"	m	struct:_ENC_FILE
+dec_close	encrypt.c	/^void dec_close(ENC_FILE *enc_f) {$/;"	f
+dec_file	encrypt.c	/^ENC_FILE * dec_file(FILE *fp, long len) {$/;"	f
+dec_fmvars	aescrypt.c	80;"	d	file:
+dec_fmvars	aescrypt.c	83;"	d	file:
+dec_fmvars	aesopt.h	737;"	d
+dec_imvars	aescrypt.c	197;"	d	file:
+dec_imvars	aescrypt.c	200;"	d	file:
+dec_imvars	aesopt.h	746;"	d
+dec_open	encrypt.c	/^ENC_FILE * dec_open(const char *file) {$/;"	f
+dec_rd_cleantext	encrypt.c	/^ENC_FILE * dec_rd_cleantext(FILE *fp, long len) {$/;"	f
+dec_read	encrypt.c	/^int dec_read(ENC_FILE *enc_f, char *buf, int max_len) {$/;"	f
+dec_read_line	encrypt.c	/^char * dec_read_line(ENC_FILE *enc_f, char *buf, int max_len) {$/;"	f
+decrypt	aescpp.h	/^    AES_RETURN decrypt(const unsigned char in[], unsigned char out[]) const$/;"	f	class:AESdecrypt
+decrypt	aescrypt.c	/^AES_RETURN aes_xi(decrypt)(const unsigned char *in, unsigned char *out, const aes_decrypt_ctx cx[1])$/;"	f
+decrypt_file	encrypt.c	/^int decrypt_file(const char *fileIn, const char *fileOut) {$/;"	f
+decrypt_key128	aeskey.c	/^AES_RETURN aes_xi(decrypt_key128)(const unsigned char *key, aes_decrypt_ctx cx[1])$/;"	f
+decrypt_key192	aeskey.c	/^AES_RETURN aes_xi(decrypt_key192)(const unsigned char *key, aes_decrypt_ctx cx[1])$/;"	f
+decrypt_key256	aeskey.c	/^AES_RETURN aes_xi(decrypt_key256)(const unsigned char *key, aes_decrypt_ctx cx[1])$/;"	f
+ecb_decrypt	aescpp.h	/^    AES_RETURN ecb_decrypt(const unsigned char in[], unsigned char out[], int nb) const$/;"	f	class:AESdecrypt
+ecb_encrypt	aescpp.h	/^    AES_RETURN ecb_encrypt(const unsigned char in[], unsigned char out[], int nb) const$/;"	f	class:AESencrypt
+enc_prefix	encrypt.c	/^const char *enc_prefix = "WLUS";$/;"	v
+encrypt	aescpp.h	/^    AES_RETURN encrypt(const unsigned char in[], unsigned char out[]) const$/;"	f	class:AESencrypt
+encrypt	aescrypt.c	/^AES_RETURN aes_xi(encrypt)(const unsigned char *in, unsigned char *out, const aes_encrypt_ctx cx[1])$/;"	f
+encrypt_file	encrypt.c	/^int encrypt_file(const char *fileIn, const char *fileOut) {$/;"	f
+encrypt_init	encrypt.c	/^void encrypt_init()$/;"	f
+encrypt_key128	aeskey.c	/^AES_RETURN aes_xi(encrypt_key128)(const unsigned char *key, aes_encrypt_ctx cx[1])$/;"	f
+encrypt_key192	aeskey.c	/^AES_RETURN aes_xi(encrypt_key192)(const unsigned char *key, aes_encrypt_ctx cx[1])$/;"	f
+encrypt_key256	aeskey.c	/^AES_RETURN aes_xi(encrypt_key256)(const unsigned char *key, aes_encrypt_ctx cx[1])$/;"	f
+f2	aestab.c	155;"	d	file:
+f2	aestab.c	167;"	d	file:
+f3	aestab.c	159;"	d	file:
+f3	aestab.c	168;"	d	file:
+f4	aestab.c	156;"	d	file:
+f8	aestab.c	157;"	d	file:
+f9	aestab.c	160;"	d	file:
+f9	aestab.c	169;"	d	file:
+fb	aestab.c	161;"	d	file:
+fb	aestab.c	170;"	d	file:
+fd	aestab.c	162;"	d	file:
+fd	aestab.c	171;"	d	file:
+fe	aestab.c	163;"	d	file:
+fe	aestab.c	172;"	d	file:
+ff	aeskey.c	230;"	d	file:
+ff	aeskey.c	232;"	d	file:
+four_tables	aesopt.h	717;"	d
+fwd_affine	aestab.c	/^uint8_t fwd_affine(const uint8_t x)$/;"	f
+fwd_lrnd	aescrypt.c	90;"	d	file:
+fwd_lrnd	aescrypt.c	92;"	d	file:
+fwd_lrnd	aescrypt.c	94;"	d	file:
+fwd_mcol	aesopt.h	733;"	d
+fwd_mcol	aesopt.h	735;"	d
+fwd_mcol	aesopt.h	738;"	d
+fwd_rnd	aescrypt.c	81;"	d	file:
+fwd_rnd	aescrypt.c	84;"	d	file:
+fwd_rnd	aescrypt.c	86;"	d	file:
+fwd_var	aescrypt.c	73;"	d	file:
+gen_key	encrypt.c	/^static void gen_key(unsigned char *key, long len) {$/;"	f	file:
+gf_c1	aesopt.h	606;"	d
+gf_c2	aesopt.h	607;"	d
+gf_inv	aestab.c	/^static uint8_t gf_inv(const uint8_t x)$/;"	f	file:
+gf_inv	aestab.c	196;"	d	file:
+gf_mulx	aesopt.h	608;"	d
+h0	aestab.c	134;"	d	file:
+has_cpuid	aes_via_ace.h	/^INLINE int has_cpuid(void)$/;"	f
+hibit	aestab.c	/^static uint8_t hibit(const uint32_t x)$/;"	f	file:
+inf	aes.h	/^    aes_inf inf;$/;"	m	struct:__anon2
+inf	aes.h	/^    aes_inf inf;$/;"	m	struct:__anon3
+init	aestab.c	/^static int init = 0;$/;"	v	file:
+int16_t	aes.h	/^	typedef short    int16_t;$/;"	t
+int16_t	aes_modes.c	/^	typedef short    int16_t;$/;"	t	file:
+int16_t	aestab.h	/^	typedef short    int16_t;$/;"	t
+int16_t	brg_types.h	/^	typedef short    int16_t;$/;"	t
+int32_t	aes.h	/^	typedef int    int32_t;$/;"	t
+int32_t	aes_modes.c	/^	typedef int    int32_t;$/;"	t	file:
+int32_t	aestab.h	/^	typedef int    int32_t;$/;"	t
+int32_t	brg_types.h	/^	typedef int    int32_t;$/;"	t
+int64_t	aes.h	/^	typedef long long int64_t;$/;"	t
+int64_t	aes_modes.c	/^	typedef long long int64_t;$/;"	t	file:
+int64_t	aestab.h	/^	typedef long long int64_t;$/;"	t
+int64_t	brg_types.h	/^	typedef long long int64_t;$/;"	t
+int8_t	aes.h	/^	typedef char     int8_t;$/;"	t
+int8_t	aes_modes.c	/^	typedef char     int8_t;$/;"	t	file:
+int8_t	aestab.h	/^	typedef char     int8_t;$/;"	t
+int8_t	brg_types.h	/^	typedef char     int8_t;$/;"	t
+intptr_t	brg_types.h	57;"	d
+inv_affine	aestab.c	/^uint8_t inv_affine(const uint8_t x)$/;"	f
+inv_lrnd	aescrypt.c	207;"	d	file:
+inv_lrnd	aescrypt.c	209;"	d	file:
+inv_lrnd	aescrypt.c	211;"	d	file:
+inv_mcol	aeskey.c	61;"	d	file:
+inv_mcol	aesopt.h	742;"	d
+inv_mcol	aesopt.h	744;"	d
+inv_mcol	aesopt.h	747;"	d
+inv_rnd	aescrypt.c	198;"	d	file:
+inv_rnd	aescrypt.c	201;"	d	file:
+inv_rnd	aescrypt.c	203;"	d	file:
+inv_var	aescrypt.c	190;"	d	file:
+is_via_cpu	aes_via_ace.h	/^INLINE int is_via_cpu(void)$/;"	f
+isb_data	aestab.c	62;"	d	file:
+k4e	aeskey.c	240;"	d	file:
+k6e	aeskey.c	352;"	d	file:
+k6ef	aeskey.c	345;"	d	file:
+k8e	aeskey.c	437;"	d	file:
+k8ef	aeskey.c	430;"	d	file:
+kd4	aeskey.c	261;"	d	file:
+kd4	aeskey.c	287;"	d	file:
+kd6	aeskey.c	367;"	d	file:
+kd8	aeskey.c	456;"	d	file:
+kd_adr	aes_modes.c	90;"	d	file:
+kd_adr	aes_modes.c	92;"	d	file:
+kd_adr	aes_modes.c	94;"	d	file:
+kdf4	aeskey.c	249;"	d	file:
+kdf4	aeskey.c	280;"	d	file:
+kdf6	aeskey.c	358;"	d	file:
+kdf8	aeskey.c	445;"	d	file:
+kdl4	aeskey.c	270;"	d	file:
+kdl4	aeskey.c	295;"	d	file:
+kdl6	aeskey.c	377;"	d	file:
+kdl8	aeskey.c	469;"	d	file:
+ke4	aeskey.c	75;"	d	file:
+ke6	aeskey.c	124;"	d	file:
+ke8	aeskey.c	173;"	d	file:
+kef6	aeskey.c	117;"	d	file:
+kef8	aeskey.c	166;"	d	file:
+key	aescpp.h	/^    AES_RETURN key(const unsigned char key[], int key_len)$/;"	f	class:AESdecrypt
+key	aescpp.h	/^    AES_RETURN key(const unsigned char key[], int key_len)$/;"	f	class:AESencrypt
+key128	aescpp.h	/^    AES_RETURN key128(const unsigned char key[])$/;"	f	class:AESdecrypt
+key128	aescpp.h	/^    AES_RETURN key128(const unsigned char key[])$/;"	f	class:AESencrypt
+key192	aescpp.h	/^    AES_RETURN key192(const unsigned char key[])$/;"	f	class:AESdecrypt
+key192	aescpp.h	/^    AES_RETURN key192(const unsigned char key[])$/;"	f	class:AESencrypt
+key256	aescpp.h	/^    AES_RETURN key256(const unsigned char key[])$/;"	f	class:AESdecrypt
+key256	aescpp.h	/^    AES_RETURN key256(const unsigned char key[])$/;"	f	class:AESencrypt
+key_ofs	aescrypt.c	222;"	d	file:
+key_ofs	aescrypt.c	225;"	d	file:
+ks	aes.h	/^{   uint32_t ks[KS_LENGTH];$/;"	m	struct:__anon2
+ks	aes.h	/^{   uint32_t ks[KS_LENGTH];$/;"	m	struct:__anon3
+l	aes.h	/^{   uint32_t l;$/;"	m	union:__anon1
+l_copy	aescrypt.c	45;"	d	file:
+len	encrypt.h	/^	int len;$/;"	m	struct:_ENC_FILE
+li_32	brg_types.h	68;"	d
+li_32	brg_types.h	70;"	d
+li_64	brg_types.h	104;"	d
+li_64	brg_types.h	109;"	d
+li_64	brg_types.h	81;"	d
+li_64	brg_types.h	84;"	d
+li_64	brg_types.h	87;"	d
+li_64	brg_types.h	90;"	d
+li_64	brg_types.h	94;"	d
+li_64	brg_types.h	99;"	d
+locals	aescrypt.c	40;"	d	file:
+locals	aescrypt.c	42;"	d	file:
+lp32	aes_modes.c	65;"	d	file:
+ls_box	aeskey.c	59;"	d	file:
+ls_box	aesopt.h	752;"	d
+ls_box	aesopt.h	754;"	d
+ls_box	aesopt.h	756;"	d
+ls_box	aesopt.h	758;"	d
+ls_box	aesopt.h	760;"	d
+main	encrypt.c	/^int main() $/;"	f
+mm_data	aestab.c	96;"	d	file:
+mode_reset	aescpp.h	/^    AES_RETURN mode_reset(void)   { return aes_mode_reset(cx); }$/;"	f	class:AESencrypt
+neh_dec_gen_key	aes_via_ace.h	105;"	d
+neh_dec_hybrid_key	aes_via_ace.h	111;"	d
+neh_dec_load_key	aes_via_ace.h	108;"	d
+neh_enc_gen_key	aes_via_ace.h	96;"	d
+neh_enc_hybrid_key	aes_via_ace.h	102;"	d
+neh_enc_load_key	aes_via_ace.h	99;"	d
+no_table	aesopt.h	705;"	d
+ofb_crypt	aescpp.h	/^    AES_RETURN ofb_crypt(const unsigned char in[], unsigned char out[], int nb,$/;"	f	class:AESencrypt
+offset	encrypt.h	/^	int offset;$/;"	m	struct:_ENC_FILE
+one_table	aesopt.h	711;"	d
+ptrint_t	brg_types.h	55;"	d
+ptrint_t	brg_types.h	58;"	d
+ptrint_t	brg_types.h	60;"	d
+ptrint_t	brg_types.h	62;"	d
+rc_data	aestab.c	130;"	d	file:
+read_via_flags	aes_via_ace.h	/^INLINE int read_via_flags(void)$/;"	f
+read_via_rng	aes_via_ace.h	/^INLINE int read_via_rng(void *buf, int count)$/;"	f
+rf1	aesopt.h	724;"	d
+rf2	aesopt.h	725;"	d
+rnd_key	aescrypt.c	223;"	d	file:
+rnd_key	aescrypt.c	226;"	d	file:
+round	aescrypt.c	49;"	d	file:
+s	aesopt.h	483;"	d
+s	aesopt.h	485;"	d
+sb_data	aestab.c	28;"	d	file:
+si	aescrypt.c	36;"	d	file:
+so	aescrypt.c	37;"	d	file:
+state_in	aescrypt.c	47;"	d	file:
+state_out	aescrypt.c	48;"	d	file:
+t_dec	aestab.h	85;"	d
+t_set	aestab.h	86;"	d
+t_use	aestab.h	87;"	d
+to_byte	aesopt.h	346;"	d
+u0	aestab.c	141;"	d	file:
+u1	aestab.c	142;"	d	file:
+u2	aestab.c	143;"	d	file:
+u3	aestab.c	144;"	d	file:
+uint16_t	aes.h	/^	typedef unsigned short    uint16_t;$/;"	t
+uint16_t	aes_modes.c	/^	typedef unsigned short    uint16_t;$/;"	t	file:
+uint16_t	aestab.h	/^	typedef unsigned short    uint16_t;$/;"	t
+uint16_t	brg_types.h	/^	typedef unsigned short    uint16_t;$/;"	t
+uint32_t	aes.h	/^	typedef unsigned int     uint32_t;$/;"	t
+uint32_t	aes_modes.c	/^	typedef unsigned int     uint32_t;$/;"	t	file:
+uint32_t	aestab.h	/^	typedef unsigned int     uint32_t;$/;"	t
+uint32_t	brg_types.h	/^	typedef unsigned int     uint32_t;$/;"	t
+uint64_t	aes.h	/^	typedef unsigned long long uint64_t;$/;"	t
+uint64_t	aes_modes.c	/^	typedef unsigned long long uint64_t;$/;"	t	file:
+uint64_t	aestab.h	/^	typedef unsigned long long uint64_t;$/;"	t
+uint64_t	brg_types.h	/^	typedef unsigned long long uint64_t;$/;"	t
+uint8_t	aes.h	/^	typedef unsigned char     uint8_t;$/;"	t
+uint8_t	aes_modes.c	/^	typedef unsigned char     uint8_t;$/;"	t	file:
+uint8_t	aestab.h	/^	typedef unsigned char     uint8_t;$/;"	t
+uint8_t	brg_types.h	/^	typedef unsigned char     uint8_t;$/;"	t
+upr	aesopt.h	571;"	d
+upr	aesopt.h	579;"	d
+ups	aesopt.h	572;"	d
+ups	aesopt.h	580;"	d
+v	aeskey.c	224;"	d	file:
+v	aeskey.c	226;"	d	file:
+v0	aestab.c	146;"	d	file:
+v1	aestab.c	147;"	d	file:
+v2	aestab.c	148;"	d	file:
+v3	aestab.c	149;"	d	file:
+vf1	aesopt.h	723;"	d
+via_ace_test	aes_via_ace.h	/^INLINE int via_ace_test(void)$/;"	f
+via_cbc_op6	aes_via_ace.h	/^INLINE void via_cbc_op6($/;"	f
+via_cbc_op6	aes_via_ace.h	/^INLINE volatile  void via_cbc_op6($/;"	f
+via_cbc_op7	aes_via_ace.h	/^INLINE void via_cbc_op7($/;"	f
+via_cbc_op7	aes_via_ace.h	/^INLINE volatile  void via_cbc_op7($/;"	f
+via_cfb_op6	aes_via_ace.h	/^INLINE void via_cfb_op6($/;"	f
+via_cfb_op6	aes_via_ace.h	/^INLINE volatile  void via_cfb_op6($/;"	f
+via_cfb_op7	aes_via_ace.h	/^INLINE void via_cfb_op7($/;"	f
+via_cfb_op7	aes_via_ace.h	/^INLINE volatile  void via_cfb_op7($/;"	f
+via_cwd	aes_modes.c	108;"	d	file:
+via_cwd	aes_modes.c	113;"	d	file:
+via_ecb_op5	aes_via_ace.h	/^INLINE void via_ecb_op5($/;"	f
+via_ecb_op5	aes_via_ace.h	/^INLINE volatile  void via_ecb_op5($/;"	f
+via_flags	aes_via_ace.h	/^static unsigned char via_flags = 0;$/;"	v
+via_ofb_op6	aes_via_ace.h	/^INLINE void via_ofb_op6($/;"	f
+via_ofb_op6	aes_via_ace.h	/^INLINE volatile  void via_ofb_op6($/;"	f
+via_rng_in	aes_via_ace.h	/^INLINE int via_rng_in(void *buf)$/;"	f
+via_rng_in	aes_via_ace.h	/^INLINE unsigned int via_rng_in(void *buf)$/;"	f
+via_rng_test	aes_via_ace.h	/^INLINE int via_rng_test(void)$/;"	f
+w0	aestab.c	136;"	d	file:
+w1	aestab.c	137;"	d	file:
+w2	aestab.c	138;"	d	file:
+w3	aestab.c	139;"	d	file:
+word_in	aesopt.h	587;"	d
+word_in	aesopt.h	592;"	d
+word_in	aesopt.h	595;"	d
+word_out	aesopt.h	589;"	d
+word_out	aesopt.h	593;"	d
+word_out	aesopt.h	596;"	d
