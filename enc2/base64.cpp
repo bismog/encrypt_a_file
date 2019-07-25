@@ -3,15 +3,15 @@
 #include <stdio.h>
 
 #include "base64.h"
-#include <openssl/md5.h>    
-#include <openssl/rsa.h>  
-#include <openssl/evp.h>  
-#include <openssl/objects.h>  
-#include <openssl/x509.h>  
-#include <openssl/err.h>  
-#include <openssl/pem.h>  
-#include <openssl/pkcs12.h>   
-#include <openssl/ssl.h>  
+// #include <openssl/md5.h>    
+// #include <openssl/rsa.h>  
+// #include <openssl/evp.h>  
+// #include <openssl/objects.h>  
+// #include <openssl/x509.h>  
+// #include <openssl/err.h>  
+// #include <openssl/pem.h>  
+// #include <openssl/pkcs12.h>   
+// #include <openssl/ssl.h>  
 
 /* BASE 64 encode table */
 static const char base64en[] = {
@@ -146,43 +146,43 @@ base64_decode(const char *in, unsigned int inlen, unsigned char *out)
 
 
 
-char *base64(const void *input, int length, char *out)
-{
-	BIO *bmem, *b64;
-	BUF_MEM *bptr;
-
-	b64 = BIO_new(BIO_f_base64());
-	bmem = BIO_new(BIO_s_mem());
-	b64 = BIO_push(b64, bmem);
-	BIO_write(b64, input, length);
-	BIO_flush(b64);
-	BIO_get_mem_ptr(b64, &bptr);
-
-//	char *out = (char *)malloc(bptr->length);
-	memcpy(out, bptr->data, bptr->length - 1);
-	out[bptr->length - 1] = 0;
-
-	BIO_free_all(b64);
-
-	return out;
-}
-
- 
-void *decodeBase64(char *inputBase64, void *retBuf, int *retBufLen)
-{
-	BIO *b64, *bmem;
-
-	b64 = BIO_new(BIO_f_base64());
-	bmem = BIO_new_mem_buf(inputBase64, strlen((const char *)inputBase64));
-	bmem = BIO_push(b64, bmem);
-	int err = 0;
-	int i = 0;
-	do{
-		err = BIO_read(bmem, (void *)((char *)retBuf + i++), 1);
-	} while (err == 1 && i<*retBufLen);
-	BIO_free_all(bmem);
-
-	*retBufLen = --i;
-
-	return retBuf;
-}
+// char *base64(const void *input, int length, char *out)
+// {
+// 	BIO *bmem, *b64;
+// 	BUF_MEM *bptr;
+// 
+// 	b64 = BIO_new(BIO_f_base64());
+// 	bmem = BIO_new(BIO_s_mem());
+// 	b64 = BIO_push(b64, bmem);
+// 	BIO_write(b64, input, length);
+// 	BIO_flush(b64);
+// 	BIO_get_mem_ptr(b64, &bptr);
+// 
+// //	char *out = (char *)malloc(bptr->length);
+// 	memcpy(out, bptr->data, bptr->length - 1);
+// 	out[bptr->length - 1] = 0;
+// 
+// 	BIO_free_all(b64);
+// 
+// 	return out;
+// }
+// 
+//  
+// void *decodeBase64(char *inputBase64, void *retBuf, int *retBufLen)
+// {
+// 	BIO *b64, *bmem;
+// 
+// 	b64 = BIO_new(BIO_f_base64());
+// 	bmem = BIO_new_mem_buf(inputBase64, strlen((const char *)inputBase64));
+// 	bmem = BIO_push(b64, bmem);
+// 	int err = 0;
+// 	int i = 0;
+// 	do{
+// 		err = BIO_read(bmem, (void *)((char *)retBuf + i++), 1);
+// 	} while (err == 1 && i<*retBufLen);
+// 	BIO_free_all(bmem);
+// 
+// 	*retBufLen = --i;
+// 
+// 	return retBuf;
+// }

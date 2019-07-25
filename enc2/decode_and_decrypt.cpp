@@ -40,7 +40,7 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         retval = 2;
         goto out;
     }
-    printf("LOAD PRIVATE KEY DONE\n");
+    // printf("LOAD PRIVATE KEY DONE\n");
 
     if (!EVP_PKEY_assign_RSA(pkey, rsa_pkey))
     {
@@ -60,7 +60,7 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         retval = 4;
         goto out_free;
     }
-    printf("READ EKLEN DONE\n");
+    // printf("READ EKLEN DONE\n");
     eklen = ntohl(eklen_n);
     if (eklen > EVP_PKEY_size(pkey))
     {
@@ -75,7 +75,7 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         retval = 4;
         goto out_free;
     }
-    printf("READ EK DONE\n");
+    // printf("READ EK DONE\n");
     if (fread(iv, EVP_CIPHER_iv_length(EVP_aes_256_cbc()), 1, in_file) != 1)
     {
         perror("input file");
@@ -158,6 +158,7 @@ int evp_decrypt_file(const char *prikey_file, const char *data_file)
     {
         perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
+        fclose(rsa_pkey_file);
         return 1;
     }
 
@@ -166,6 +167,8 @@ int evp_decrypt_file(const char *prikey_file, const char *data_file)
     {
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
+        fclose(rsa_pkey_file);
+        fclose(fin);
         return 1;
     }
 
@@ -177,12 +180,28 @@ int evp_decrypt_file(const char *prikey_file, const char *data_file)
     return rv;
 }
 
+int padding_len(const char *data) {
+    int len = strlen(data);
+    if (len <= 2) {
+        return 255;
+    }
+    // printf("Last two data: %x(%c) %x(%c)\n", data[len-2], data[len-2], data[len-1], data[len-1]);
+    if (data[len-2] == '=') {
+        return 2;
+    }
+    else if (data[len-1] == '=') {
+        return 1;
+    }
+    return 0;
+}
+
 int base64_decode_file(const char *data_file)
 {
 	int len = 0;
-	void *buf = NULL;
+	int pad_len = 0;
+	char *buf = NULL;
     int dec_len = 0;
-    unsigned char *dec_buf = NULL;
+    char *dec_buf = NULL;
     FILE *fin, *fout;
     char temp_file[FILE_LEN] = {0};
     int rv = 0;
@@ -195,7 +214,7 @@ int base64_decode_file(const char *data_file)
     {
         perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
-        rv = 1;
+        rv = 10001;
         goto b64_cleanup;
     }
 
@@ -204,7 +223,7 @@ int base64_decode_file(const char *data_file)
     {
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
-        rv = 1;
+        rv = 10002;
         goto b64_cleanup;
     }
 
@@ -215,34 +234,43 @@ int base64_decode_file(const char *data_file)
 		fclose(fin);
 		fin = NULL;
 		remove(temp_file);
-        rv = 1;
+        rv = 10003;
 		goto b64_cleanup;
 	}
 
-	buf = malloc(sizeof(char)*len+1);
+	buf = (char*)malloc(sizeof(char)*len+1);
 	memset(buf, 0, sizeof(char)*len+1);
 	if (len != fread(buf, 1, len, fin)){
         perror(temp_file);
-        rv = 1;
+        rv = 10004;
 		goto b64_cleanup;
 	}
 
     // Length of decoded data
-    dec_len = BASE64_DECODE_OUT_SIZE(len);
-    printf("source length: %d.\n", len);
-    printf("decoded length: %d.\n", dec_len);
-    dec_buf = (unsigned char*)malloc(dec_len+1);
-    if (0 != base64_decode((char*)buf, len, dec_buf)) {
-        printf("DECODE FAILED!\n");
-        rv = 1;
-        rename(temp_file, data_file);
+    // Note this size is the maximum size of decode data.
+    // The real size may be BASE64_DECODE_OUT_SIZE(len)-1 or 
+    // BASE64_DECODE_OUT_SIZE(len)-2. in other word,
+    // it should be BASE64_DECODE_OUT_SIZE(len) minus number of 
+    // character '='.
+    pad_len = padding_len(buf);
+    if (255 == pad_len) {
+        rv = 10005;
+        goto b64_cleanup;
+    }
+    dec_len = BASE64_DECODE_OUT_SIZE(len) - pad_len;
+    // printf("source length: %d.\n", len);
+    // printf("decoded length: %d.\n", dec_len);
+    dec_buf = (char*)malloc(dec_len+1);
+    if (0 != base64_decode((char*)buf, len, (unsigned char*)dec_buf)) {
+        // printf("DECODE FAILED!\n");
+        rv = 10005;
         goto b64_cleanup;
     }
 
     if (fwrite(dec_buf, dec_len, 1, fout) != 1)
     {
         perror(data_file);
-        rv = 1;
+        rv = 10006;
         goto b64_cleanup;
     }
 
@@ -251,6 +279,7 @@ int base64_decode_file(const char *data_file)
 b64_cleanup:
     fclose(fin);
     fclose(fout);
+    rename(temp_file, data_file);
     return rv;
 }
 
@@ -266,7 +295,7 @@ int main(int argc, char *argv[])
     }
 
     if( 0 == base64_decode_file(argv[2])) {
-        printf("DECODE OK, DECRYPT FILE..\n");
+        // printf("DECODE OK, DECRYPT FILE..\n");
         evp_decrypt_file(argv[1], argv[2]);  
     }
 

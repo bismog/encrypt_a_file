@@ -163,6 +163,7 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
     {
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
+        fclose(fin);
         return 1;
     }
 
@@ -178,7 +179,7 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
 int base64_encode_file(const char *data_file)
 {
 	int len = 0;
-	void *buf = NULL;
+	char *buf = NULL;
     int enc_len = 0;
     char *enc_buf = NULL;
     FILE *fin, *fout;
@@ -192,7 +193,7 @@ int base64_encode_file(const char *data_file)
     {
         perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
-        rv = 1;
+        rv = 10001;
         goto b64_cleanup;
     }
 
@@ -201,7 +202,7 @@ int base64_encode_file(const char *data_file)
     {
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
-        rv = 1;
+        rv = 10002;
         goto b64_cleanup;
     }
 
@@ -211,34 +212,32 @@ int base64_encode_file(const char *data_file)
 	if (0 == len){
 		fclose(fin);
 		fin = NULL;
-		remove(temp_file);
-        rv = 1;
+        rv = 10003;
 		goto b64_cleanup;
 	}
 
-	buf = malloc(sizeof(char)*len+1);
+	buf = (char*)malloc(sizeof(char)*len+1);
 	memset(buf, 0, sizeof(char)*len+1);
 	if (len != fread(buf, 1, len, fin)){
         perror(temp_file);
-        rv = 1;
+        rv = 10004;
 		goto b64_cleanup;
 	}
 
     // Length of encoded data
     enc_len = BASE64_ENCODE_OUT_SIZE(len);
-    printf("source length: %d.\n", len);
-    printf("encoded length: %d.\n", enc_len);
+    // printf("source length: %d.\n", len);
+    // printf("encoded length: %d.\n", enc_len);
     enc_buf = (char*)malloc(enc_len+1);
     if (enc_len != base64_encode((unsigned char*)buf, len, enc_buf)) {
-        rv = 1;
-        rename(temp_file, data_file);
+        rv = 10005;
         goto b64_cleanup;
     }
 
     if (fwrite(enc_buf, enc_len, 1, fout) != 1)
     {
         perror(data_file);
-        rv = 1;
+        rv = 10006;
         goto b64_cleanup;
     }
 
@@ -247,6 +246,7 @@ int base64_encode_file(const char *data_file)
 b64_cleanup:
     fclose(fin);
     fclose(fout);
+    rename(temp_file, data_file);
     return rv;
 }
 
@@ -415,7 +415,7 @@ int main(int argc, char *argv[]) {
     }
 
     if( 0 == evp_encrypt_file(argv[1], argv[2])) {
-        printf("ENCRYPT OK");
+        // printf("ENCRYPT OK");
         base64_encode_file(argv[2]);  
     }
 
