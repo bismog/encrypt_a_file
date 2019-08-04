@@ -149,6 +149,7 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
     }
 
     snprintf(temp_file, FILE_LEN, "%s.%u", data_file, time(NULL));
+    printf("[ENCRYPT]Rename file to: %s.\n", temp_file);
     rename(data_file, temp_file);
     fin = fopen(temp_file, "rb");
     if (!fin)
@@ -187,6 +188,7 @@ int base64_encode_file(const char *data_file)
     int rv = 0;
 
     snprintf(temp_file, FILE_LEN, "%s.%u", data_file, time(NULL));
+    printf("[ENCODE]Rename file to: %s.\n", temp_file);
     rename(data_file, temp_file);
     fin = fopen(temp_file, "rb");
     if (!fin)
