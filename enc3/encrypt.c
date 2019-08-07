@@ -184,6 +184,11 @@ int encrypt_file(const char *fileIn, const char *fileOut) {
 	fwrite(iv, 1, 16, outFile);
 	
 	gen_key(key, len);
+    printf("------------------------------\n");
+    for (i=0;i<32;i++) {
+        printf("%d  ", key[i]);
+    }
+    printf("------------------------------\n");
 	aes_encrypt_key256(key, ctx);
 	
 	while((i = fread(inBuffer, 1, sizeof(inBuffer), inFile)) > 0) {
@@ -238,6 +243,11 @@ int decrypt_file(const char *fileIn, const char *fileOut) {
 	}
 	
 	gen_key(key, len - strlen(enc_prefix) - 16);
+    printf("------------------------------\n");
+    for (i=0;i<32;i++) {
+        printf("%d  ", key[i]);
+    }
+    printf("------------------------------\n");
 	aes_encrypt_key256(key, ctx);
 	
 	while((i = fread(inBuffer, 1, sizeof(inBuffer), inFile)) > 0) {

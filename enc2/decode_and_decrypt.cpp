@@ -274,12 +274,19 @@ int base64_decode_file(const char *data_file)
         goto b64_cleanup;
     }
 
+    rv = 0;
     unlink(temp_file);
 
 b64_cleanup:
-    fclose(fin);
-    fclose(fout);
-    rename(temp_file, data_file);
+    if(fin) {
+        fclose(fin);
+    }
+    if(fout) {
+        fclose(fout);
+    }
+    if(rv) {
+        rename(temp_file, data_file);
+    }
     return rv;
 }
 

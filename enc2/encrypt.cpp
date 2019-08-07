@@ -8,14 +8,16 @@
 
 #include <arpa/inet.h> /* For htonl() */
 
+#define BUF_LEN    4096
+
 int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 {
     int retval = 0;
     RSA *rsa_pkey = NULL;
     EVP_PKEY *pkey = EVP_PKEY_new();
     EVP_CIPHER_CTX ctx;
-    unsigned char buffer[4096];
-    unsigned char buffer_out[4096 + EVP_MAX_IV_LENGTH];
+    unsigned char buffer[BUF_LEN];
+    unsigned char buffer_out[BUF_LEN + EVP_MAX_IV_LENGTH];
     size_t len;
     int len_out;
     unsigned char *ek = NULL;

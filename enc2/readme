@@ -1,0 +1,25 @@
+encrypt.cpp                 ## Encrypt file
+decrypt.cpp                 ## Decrypt file
+
+Compilation:
+```
+g++ encrypt.cpp -o enc_file -lcrypto
+g++ decrypt.cpp -o dec_file -lcrypto
+```
+
+encrypt_and_encode.cpp      ## Encrypt and then encode(base64), use .temp as middle file
+decode_and_decrypt.cpp      ## Decode and then decrypt, use .temp as middle file.               ** This one was compiled to binary, and ...(OIKWDTM) **
+
+encrypt_mix_encode.cpp      ## Encrypt, encode without temp file, all in memory
+decode_mix_decrypt.cpp      ## Decode, decrypt without temp file, all in memory
+
+Compilation: 
+```
+g++ encrypt_and_encode.cpp base64.cpp -o enc_file -lcrypto
+g++ encrypt_mix_encode.cpp base64.cpp -o enc_file -lcrypto
+g++ decode_and_decrypt.cpp base64.cpp -o enc_file -lcrypto
+g++ decode_mix_decrypt.cpp base64.cpp -o enc_file -lcrypto
+```
+
+
+
