@@ -1,0 +1,8 @@
+This folder includes source file to encrypt file
+with self-customized aes algorithm.
+
+# e.g.: Update encrypt log file
+
+```
+gcc -g -o uplog update_enc_file.c 
+
