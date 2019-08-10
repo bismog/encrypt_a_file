@@ -1,3 +1,5 @@
+
+
 encrypt.cpp                 ## Encrypt file
 decrypt.cpp                 ## Decrypt file
 
@@ -17,9 +19,14 @@ Compilation:
 ```
 g++ encrypt_and_encode.cpp base64.cpp -o enc_file -lcrypto
 g++ encrypt_mix_encode.cpp base64.cpp -o enc_file -lcrypto
-g++ decode_and_decrypt.cpp base64.cpp -o enc_file -lcrypto
-g++ decode_mix_decrypt.cpp base64.cpp -o enc_file -lcrypto
+g++ decode_and_decrypt.cpp base64.cpp -o dec_file -lcrypto
+g++ decode_mix_decrypt.cpp base64.cpp -o dec_file -lcrypto
 ```
 
+base64_hugefile.cpp         ## Encode/decode huge file
 
+Compilation:
+```
+g++ base64_hugefile.cpp base64.cpp -o huge -lcrypto
+```
 

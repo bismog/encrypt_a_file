@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <openssl/evp.h>
-#include <openssl/pem.h>
-#include <openssl/rsa.h>
-#include <openssl/err.h>
-#include "base64.h"
-
-#ifndef WIN32
-#include <arpa/inet.h> /* For htonl() */
-#include <unistd.h>
-#else
-#include "include/getopt.h"
-#include <Winsock.h>
-#endif
-
-#define   FILE_LEN      256
-#define   BUFFER_LEN     4096
+#include "evp_encrypt.h"
 
 int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 {
@@ -37,14 +19,14 @@ int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     {
         fprintf(stderr, "Error loading RSA Public Key File.\n");
         ERR_print_errors_fp(stderr);
-        retval = 2;
+        retval = 1001;
         goto out;
     }
 
     if (!EVP_PKEY_assign_RSA(pkey, rsa_pkey))
     {
         fprintf(stderr, "EVP_PKEY_assign_RSA: failed.\n");
-        retval = 3;
+        retval = 1002;
         goto out;
     }
 
@@ -54,7 +36,7 @@ int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     if (!EVP_SealInit(&ctx, EVP_aes_256_cbc(), &ek, &eklen, iv, &pkey, 1))
     {
         fprintf(stderr, "EVP_SealInit: failed.\n");
-        retval = 3;
+        retval = 1003;
         goto out_free;
     }
 
@@ -66,19 +48,19 @@ int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     if (fwrite(&eklen_n, sizeof eklen_n, 1, out_file) != 1)
     {
         perror("output file");
-        retval = 5;
+        retval = 1004;
         goto out_free;
     }
     if (fwrite(ek, eklen, 1, out_file) != 1)
     {
         perror("output file");
-        retval = 5;
+        retval = 1005;
         goto out_free;
     }
     if (fwrite(iv, EVP_CIPHER_iv_length(EVP_aes_256_cbc()), 1, out_file) != 1)
     {
         perror("output file");
-        retval = 5;
+        retval = 1006;
         goto out_free;
     }
 
@@ -92,14 +74,14 @@ int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         if (!EVP_SealUpdate(&ctx, buffer_out, &len_out, buffer, len))
         {
             fprintf(stderr, "EVP_SealUpdate: failed.\n");
-            retval = 3;
+            retval = 1007;
             goto out_free;
         }
 
         if (fwrite(buffer_out, len_out, 1, out_file) != 1)
         {
             perror("output file");
-            retval = 5;
+            retval = 1008;
             goto out_free;
         }
     }
@@ -107,21 +89,21 @@ int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     if (ferror(in_file))
     {
         perror("input file");
-        retval = 4;
+        retval = 1009;
         goto out_free;
     }
 
     if (!EVP_SealFinal(&ctx, buffer_out, &len_out))
     {
         fprintf(stderr, "EVP_SealFinal: failed.\n");
-        retval = 3;
+        retval = 1010;
         goto out_free;
     }
 
     if (fwrite(buffer_out, len_out, 1, out_file) != 1)
     {
         perror("output file");
-        retval = 5;
+        retval = 1011;
         goto out_free;
     }
 
@@ -145,18 +127,19 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
     {
         perror(pubkey_file);
         fprintf(stderr, "Error loading PEM RSA Public Key File.\n");
-        return 1;
+        return 20001;
     }
 
-    snprintf(temp_file, FILE_LEN, "%s.%u", data_file, time(NULL));
-    printf("[ENCRYPT]Rename file to: %s.\n", temp_file);
+    snprintf(temp_file, FILE_LEN, "%s.temp", data_file);
     rename(data_file, temp_file);
     fin = fopen(temp_file, "rb");
     if (!fin)
     {
         perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
-        return 1;
+        fclose(rsa_pkey_file);
+        rename(temp_file, data_file);
+        return 20002;
     }
 
     fout = fopen(data_file, "wb");
@@ -164,8 +147,10 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
     {
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
+        fclose(rsa_pkey_file);
         fclose(fin);
-        return 1;
+        rename(temp_file, data_file);
+        return 20003;
     }
 
     rv = do_evp_seal(rsa_pkey_file, fin, fout);
@@ -173,22 +158,27 @@ int evp_encrypt_file(const char *pubkey_file, const char *data_file)
     fclose(rsa_pkey_file);
     fclose(fin);
     fclose(fout);
+    if (0 != rv) {
+        rename(temp_file, data_file);
+    }
+    else {
+        unlink(temp_file);
+    }
     return rv;
 }
 
 
 int base64_encode_file(const char *data_file)
 {
-	int len = 0;
-	char *buf = NULL;
-    int enc_len = 0;
-    char *enc_buf = NULL;
+    int len = 0;
+    char buf[RAW_BLK_LEN+1] = {0};
+    int len_out = 0;
+    char buf_out[CODED_BLK_LEN+1] = {0};
     FILE *fin, *fout;
     char temp_file[FILE_LEN] = {0};
     int rv = 0;
 
-    snprintf(temp_file, FILE_LEN, "%s.%u", data_file, time(NULL));
-    printf("[ENCODE]Rename file to: %s.\n", temp_file);
+    snprintf(temp_file, FILE_LEN, "%s.temp", data_file);
     rename(data_file, temp_file);
     fin = fopen(temp_file, "rb");
     if (!fin)
@@ -196,7 +186,7 @@ int base64_encode_file(const char *data_file)
         perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
         rv = 10001;
-        goto b64_cleanup;
+        goto b64_encode_cleanup;
     }
 
     fout = fopen(data_file, "wb");
@@ -205,46 +195,26 @@ int base64_encode_file(const char *data_file)
         perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
         rv = 10002;
-        goto b64_cleanup;
+        goto b64_encode_cleanup;
     }
 
-	fseek(fin, 0, SEEK_END);
-	len = ftell(fin);
-	rewind(fin);
-	if (0 == len){
-		fclose(fin);
-		fin = NULL;
-        rv = 10003;
-		goto b64_cleanup;
-	}
+    
+    while((len = fread(buf, 1, RAW_BLK_LEN, fin)) > 0) {
+        len_out = BASE64_ENCODE_OUT_SIZE(len);
+        if (len_out != base64_encode((unsigned char*)buf, len, buf_out)) {
+            rv = 10003;
+            goto b64_encode_cleanup;
+        }
 
-	buf = (char*)malloc(sizeof(char)*len+1);
-	memset(buf, 0, sizeof(char)*len+1);
-	if (len != fread(buf, 1, len, fin)){
-        perror(temp_file);
-        rv = 10004;
-		goto b64_cleanup;
-	}
-
-    // Length of encoded data
-    enc_len = BASE64_ENCODE_OUT_SIZE(len);
-    // printf("source length: %d.\n", len);
-    // printf("encoded length: %d.\n", enc_len);
-    enc_buf = (char*)malloc(enc_len+1);
-    if (enc_len != base64_encode((unsigned char*)buf, len, enc_buf)) {
-        rv = 10005;
-        goto b64_cleanup;
+        if (fwrite(buf_out, len_out, 1, fout) != 1)
+        {
+            perror(data_file);
+            rv = 10004;
+            goto b64_encode_cleanup;
+        }
     }
 
-    if (fwrite(enc_buf, enc_len, 1, fout) != 1)
-    {
-        perror(data_file);
-        rv = 10006;
-        goto b64_cleanup;
-    }
-
-
-b64_cleanup:
+b64_encode_cleanup:
     if(fin) {
         fclose(fin);
     }
@@ -279,14 +249,14 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     {
         fprintf(stderr, "Error loading RSA Private Key File.\n");
         ERR_print_errors_fp(stderr);
-        retval = 2;
+        retval = 1001;
         goto out;
     }
 
     if (!EVP_PKEY_assign_RSA(pkey, rsa_pkey))
     {
         fprintf(stderr, "EVP_PKEY_assign_RSA: failed.\n");
-        retval = 3;
+        retval = 1002;
         goto out;
     }
 
@@ -294,38 +264,39 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     ek = (unsigned char*)malloc(EVP_PKEY_size(pkey));
 
     /* First need to fetch the encrypted key length, encrypted key and IV */
-
     if (fread(&eklen_n, sizeof eklen_n, 1, in_file) != 1)
     {
         perror("input file");
-        retval = 4;
+        retval = 1003;
         goto out_free;
     }
+
     eklen = ntohl(eklen_n);
     if (eklen > EVP_PKEY_size(pkey))
     {
         fprintf(stderr, "Bad encrypted key length (%u > %d)\n", eklen,
             EVP_PKEY_size(pkey));
-        retval = 4;
+        retval = 1004;
         goto out_free;
     }
     if (fread(ek, eklen, 1, in_file) != 1)
     {
         perror("input file");
-        retval = 4;
+        retval = 1005;
         goto out_free;
     }
+
     if (fread(iv, EVP_CIPHER_iv_length(EVP_aes_256_cbc()), 1, in_file) != 1)
     {
         perror("input file");
-        retval = 4;
+        retval = 1006;
         goto out_free;
     }
 
     if (!EVP_OpenInit(&ctx, EVP_aes_256_cbc(), ek, eklen, iv, pkey))
     {
         fprintf(stderr, "EVP_OpenInit: failed.\n");
-        retval = 3;
+        retval = 1007;
         goto out_free;
     }
 
@@ -334,14 +305,14 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         if (!EVP_OpenUpdate(&ctx, buffer_out, &len_out, buffer, len))
         {
             fprintf(stderr, "EVP_OpenUpdate: failed.\n");
-            retval = 3;
+            retval = 1008;
             goto out_free;
         }
 
         if (fwrite(buffer_out, len_out, 1, out_file) != 1)
         {
             perror("output file");
-            retval = 5;
+            retval = 1009;
             goto out_free;
         }
     }
@@ -349,22 +320,24 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     if (ferror(in_file))
     {
         perror("input file");
-        retval = 4;
+        retval = 1010;
         goto out_free;
     }
 
     if (!EVP_OpenFinal(&ctx, buffer_out, &len_out))
     {
         fprintf(stderr, "EVP_SealFinal: failed.\n");
-        retval = 3;
+        retval = 1011;
         goto out_free;
     }
 
-    if (fwrite(buffer_out, len_out, 1, out_file) != 1)
-    {
-        perror("output file");
-        retval = 5;
-        goto out_free;
+    if (len_out != 0) {
+        if (fwrite(buffer_out, len_out, 1, out_file) != 1)
+        {
+            perror("output file");
+            retval = 1012;
+            goto out_free;
+        }
     }
 
     out_free:
@@ -375,35 +348,42 @@ int do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     return retval;
 }
 
-int evp_decrypt_file(const char *prikey_file, const char *in_file, 
-                 const char *out_file)
+int evp_decrypt_file(const char *prikey_file, const char *data_file)
 {
     FILE *rsa_pkey_file;
     FILE *fin, *fout;
     int rv;
+    char temp_file[FILE_LEN] = {0};
 
     rsa_pkey_file = fopen(prikey_file, "rb");
     if (!rsa_pkey_file)
     {
         perror(prikey_file);
         fprintf(stderr, "Error loading PEM RSA Private Key File.\n");
-        exit(2);
+        return 1001;
     }
 
-    fin = fopen(in_file, "rb");
+    snprintf(temp_file, FILE_LEN, "%s.temp", data_file);
+    rename(data_file, temp_file);
+    fin = fopen(temp_file, "rb");
     if (!fin)
     {
-        perror(in_file);
+        perror(temp_file);
         fprintf(stderr, "Error Open Input File.\n");
-        exit(2);
+        fclose(rsa_pkey_file);
+        rename(temp_file, data_file);
+        return 1002;
     }
 
-    fout = fopen(out_file, "wb");
+    fout = fopen(data_file, "wb");
     if (!fout)
     {
-        perror(out_file);
+        perror(data_file);
         fprintf(stderr, "Error Open Output File.\n");
-        exit(2);
+        fclose(rsa_pkey_file);
+        fclose(fin);
+        rename(temp_file, data_file);
+        return 1003;
     }
 
     rv = do_evp_unseal(rsa_pkey_file, fin, fout);
@@ -411,23 +391,176 @@ int evp_decrypt_file(const char *prikey_file, const char *in_file,
     fclose(rsa_pkey_file);
     fclose(fin);
     fclose(fout);
+    if (0 != rv) {
+        rename(temp_file, data_file);
+    }
+    else {
+        unlink(temp_file);
+    }
     return rv;
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 3)
+int padding_len(const char *data, int len) {
+    if (len <= 2) {
+        return 255;
+    }
+    // printf("Last two data: %x(%c) %x(%c)\n", data[len-2], data[len-2], data[len-1], data[len-1]);
+    if (data[len-2] == '=') {
+        return 2;
+    }
+    else if (data[len-1] == '=') {
+        return 1;
+    }
+    return 0;
+}
+
+int real_len(char *str, int len) {
+    char ch;
+    int len_out=0;
+
+    while (((ch = (unsigned char)*str) != '\0') && \
+           ((ch = (unsigned char)*str) != '\n') && \
+           ((ch = (unsigned char)*str) != '\r')) {
+        if(len_out >= len) {
+            return len;
+        }
+        str++;
+        len_out++;
+    }
+
+    return len_out;
+}
+
+int base64_decode_file(const char *data_file)
+{
+	int len = 0;
+	char buf[CODED_BLK_LEN+1] = {0};
+    int len_out = RAW_BLK_LEN;
+    char buf_out[RAW_BLK_LEN+1] = {0};
+	int pad_len = 0;
+    FILE *fin, *fout;
+    char temp_file[FILE_LEN] = {0};
+    int rv = 0;
+
+    snprintf(temp_file, FILE_LEN, "%s.temp", data_file);
+    rename(data_file, temp_file);
+    fin = fopen(temp_file, "rb");
+    if (!fin)
     {
-        fprintf(stderr, "Usage: %s <PEM RSA Public Key File> <Data File>\n", argv[0]);
+        perror(temp_file);
+        fprintf(stderr, "Error Open Input File.\n");
+        rv = 10001;
+        goto b64_decode_cleanup;
+    }
+
+    fout = fopen(data_file, "wb");
+    if (!fout)
+    {
+        perror(data_file);
+        fprintf(stderr, "Error Open Output File.\n");
+        rv = 10002;
+        goto b64_decode_cleanup;
+    }
+
+    while((len = fread(buf, 1, CODED_BLK_LEN, fin)) > 0) {
+        // Length of decoded data
+        // Note this size is the maximum size of decode data.
+        // The real size may be BASE64_DECODE_OUT_SIZE(len)-1 or 
+        // BASE64_DECODE_OUT_SIZE(len)-2. in other word,
+        // it should be BASE64_DECODE_OUT_SIZE(len) minus number of 
+        // character '='.
+        len = real_len(buf, len);
+        if(len < CODED_BLK_LEN) {
+            pad_len = padding_len(buf, len);
+            if (255 == pad_len) {
+                rv = 10003;
+                goto b64_decode_cleanup;
+            }
+            len_out = BASE64_DECODE_OUT_SIZE(len) - pad_len;
+        }
+    
+        if (0 != base64_decode((char*)buf, len, (unsigned char*)buf_out)) {
+            rv = 10004;
+            goto b64_decode_cleanup;
+        }
+
+        if (fwrite(buf_out, len_out, 1, fout) != 1)
+        {
+            perror(data_file);
+            rv = 10005;
+            goto b64_decode_cleanup;
+        }
+    }
+
+b64_decode_cleanup:
+    if(fin) {
+        fclose(fin);
+    }
+    if(fout) {
+        fclose(fout);
+    }
+    if(rv) {
+        rename(temp_file, data_file);
+    }
+    else {
+        unlink(temp_file);
+    }
+    return rv;
+}
+
+
+// Ether build target as encfile or decfile
+
+#if 0
+int main(int argc, char *argv[]) {
+    int rv = 0;
+
+    if (argc < 2)
+    {
+        fprintf(stderr, "Usage: %s <Public Key File> <Data File>\n", argv[0]);
         exit(1);
     }
     else {
-        printf("ENCRYPT FILE:%s WITH KEY:%s.", argv[2], argv[1]);
+        printf("FILE:%s.\n", argv[2]);
     }
 
-    if( 0 == evp_encrypt_file(argv[1], argv[2])) {
-        // printf("ENCRYPT OK");
-        base64_encode_file(argv[2]);  
+    if((rv = evp_encrypt_file(argv[1], argv[2])) != 0) {
+        printf("SORRY! ENCRYPT FAILED, rv: %d.\n", rv);
+    }
+    else {
+        rv = base64_encode_file(argv[2]);
+        if(rv != 0) {
+            printf("SORRY! ENCODE FAILED, rv: %d.\n", rv);
+        }
     }
 
     return 0;
 }
+#endif
+
+#if 0
+int main(int argc, char *argv[]) {
+    int rv = 0;
+
+    if (argc < 3)
+    {
+        fprintf(stderr, "Usage: %s <Private Key File> <Data File>\n", argv[0]);
+        exit(1);
+    }
+    else {
+        printf("FILE:%s.\n", argv[2]);
+    }
+
+    if((rv = base64_decode_file(argv[2])) != 0) {
+        printf("SORRY! DECODE FAILED, rv: %d.\n", rv);
+    }
+    else {
+        rv = evp_decrypt_file(argv[1], argv[2]);  
+        if(rv != 0) {
+            printf("SORRY! DECRYPT FAILED, rv: %d.\n", rv);
+        }
+    }
+
+    return 0;
+}
+#endif
