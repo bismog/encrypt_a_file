@@ -433,11 +433,11 @@ int real_len(char *str, int len) {
 
 int base64_decode_file(const char *data_file)
 {
-	int len = 0;
-	char buf[CODED_BLK_LEN+1] = {0};
+    int len = 0;
+    char buf[CODED_BLK_LEN+1] = {0};
     int len_out = RAW_BLK_LEN;
     char buf_out[RAW_BLK_LEN+1] = {0};
-	int pad_len = 0;
+    int pad_len = 0;
     FILE *fin, *fout;
     char temp_file[FILE_LEN] = {0};
     int rv = 0;
